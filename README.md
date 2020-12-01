@@ -14,7 +14,7 @@ npm install
 
 ## Usage
 
-Une fois installer, vous pouvvez lancer l'application en lancant un terminal, aller à la racine du projet et taper la commande suivante :
+Une fois installé, vous pouvvez lancer l'application en lancant un terminal, aller à la racine du projet et taper la commande suivante :
 
 ```bash
 npm start
