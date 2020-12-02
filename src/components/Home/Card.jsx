@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Card = ({ image, titre, description, handleShow }) => {
   return (
