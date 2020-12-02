@@ -9,6 +9,7 @@ test("renders content", () => {
     <div>
       <Header />
       <HomeContent />
+      <Footer />
     </div>
   );
 });
