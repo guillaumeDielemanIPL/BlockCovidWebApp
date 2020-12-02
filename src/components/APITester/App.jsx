@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const App = () => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("https://stopcovid-pfe.azurewebsites.net/");
   const [type, setType] = useState("GET");
   const [data, setData] = useState("");
-  const [resp, setResp] = useState("");
   const onChangeUrl = (event) => {
     event.preventDefault();
     setUrl(event.target.value);
@@ -49,7 +48,12 @@ const App = () => {
       <h1>API Tester :</h1>
       <form>
         <label>URL</label>
-        <input type="text" onChange={onChangeUrl}></input>
+        <input
+          type="text"
+          size="100"
+          onChange={onChangeUrl}
+          value="https://stopcovid-pfe.azurewebsites.net/"
+        ></input>
         <br />
         <label>Type</label>
         <select onChange={onChangeType}>
@@ -65,8 +69,6 @@ const App = () => {
         <br />
         <button onClick={onSendRequest}>ENVOYER LA REQUETE</button>
       </form>
-      <h3>Response :</h3>
-      <p>{resp}</p>
     </div>
   );
 };
