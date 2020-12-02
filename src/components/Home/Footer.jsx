@@ -10,11 +10,7 @@ const Footer = () => {
             <div className="row">
               <div className="col-xs-12 col-sm-7">
                 <p>
-                  <small>
-                    {textes.DEVELOPE_PAR}
-                    <br />
-                    {textes.TEMPLATE}
-                  </small>
+                  <small>{textes.DEVELOPE_PAR}</small>
                 </p>
               </div>
               <div className="col-xs-12 col-sm-5">
