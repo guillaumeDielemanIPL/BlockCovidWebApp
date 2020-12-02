@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Card = ({ image, titre, description }) => {
+const Card = ({ image, titre, description, handleShow }) => {
   return (
-    <div className="card">
+    <div className="card ">
       <img
         className="card-img-top"
         height="180"
@@ -13,7 +13,9 @@ const Card = ({ image, titre, description }) => {
       <div className="card-body">
         <h5 className="card-title">{titre}</h5>
         <p className="card-text">{description}</p>
-        <button className="btn btn-primary">Go somewhere</button>
+        <button className="btn btn-primary" onClick={handleShow}>
+          Se connecter
+        </button>
       </div>
     </div>
   );
