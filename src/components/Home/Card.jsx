@@ -14,8 +14,11 @@ const Card = ({ image, titre, description, handleShow }) => {
         <h5 className="card-title">{titre}</h5>
         <p className="card-text">{description}</p>
         <button className="btn btn-primary" onClick={handleShow}>
-          Se connecter
+          S'inscrire
         </button>
+        {"   "}
+        ou
+        <button className="btn btn-link">Se connecter</button>
       </div>
     </div>
   );
