@@ -1,9 +1,11 @@
 import React from "react";
-import NavBar from "components/Home/NavBar.jsx";
+import Header from "components/Home/Header.jsx";
+import HomeContent from "components/Home/HomeContent";
 const HomeView = () => {
   return (
     <div>
-      <NavBar />
+      <Header />
+      <HomeContent />
     </div>
   );
 };
