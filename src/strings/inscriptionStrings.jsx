@@ -1,4 +1,7 @@
 const INSCRIPTION_STRINGS = {
+  MEDECIN_RADIO: "Médecin",
+  ETABLISSEMENT_RADIO: "Etablissement",
+  VALIDER: "Valider",
   TITRE: "INSCRIPTION",
   NOM_ETABLISSEMENT: "Nom de l'établissement",
   PLACEHOLDER_NOM_ETABLISSEMENT: "Institut Paul Lambin",

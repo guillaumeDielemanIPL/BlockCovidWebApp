@@ -1,5 +1,7 @@
 import React from "react";
 import textes from "strings/accueilStrings";
+import URLS from "urls/urls";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div>
@@ -26,16 +28,16 @@ const Header = () => {
             <div className="collapse navbar-collapse" id="navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
                 <li>
-                  <a href="todo">{textes.ACCUEIL}</a>
+                  <Link to={URLS.ACCUEIL}>{textes.ACCUEIL}</Link>
                 </li>
                 <li>
-                  <a href="todo">{textes.INSCRIPTION}</a>
+                  <Link to={URLS.INSCRIPTION}>{textes.INSCRIPTION}</Link>
                 </li>
                 <li>
                   <p>
-                    <a href="todo" className="btn btn-default navbar-btn">
-                      {textes.CONNEXION}
-                    </a>
+                    <Link className="btn btn-default navbar-btn" to={URLS.CONNEXION}>
+                        {textes.CONNEXION}
+                    </Link>
                   </p>
                 </li>
               </ul>

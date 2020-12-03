@@ -1,6 +1,8 @@
 import HomeView from "components/Home/HomeView";
 import InscriptionEtablissementView from "components/InscriptionEtablissement/InscriptionEtablissementView";
 import InscriptionMedecinView from "components/InscriptionMedecin/InscriptionMedecinView";
+import InscriptionChoiceView from "components/InscriptionChoice/InscriptionChoiceView";
+import ConnexionView from "components/Connexion/ConnexionView";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import URLS from "urls/urls";
@@ -14,7 +16,13 @@ const AppRouter = () => {
         <Route path={URLS.INSCRIPTION_ETABLISSEMENT}>
           <InscriptionEtablissementView />
         </Route>
-        <Route path="/">
+        <Route path={URLS.INSCRIPTION}>
+          <InscriptionChoiceView />
+        </Route>
+        <Route path={URLS.CONNEXION}>
+          <ConnexionView />
+        </Route>
+        <Route path={URLS.ACCUEIL}>
           <HomeView />
         </Route>
       </Switch>
