@@ -10,6 +10,9 @@ const HOME_STRINGS = {
   TEMPLATE: "Template créé par Mashup Template/Unsplash",
   INSCRIRE: "S'inscrire",
   CONNECTER: "Se connecter",
+  ACCUEIL: "Acccueil",
+  INSCRIPTION: "Inscription",
+  CONNEXION: "Connexion",
 };
 
 export default HOME_STRINGS;

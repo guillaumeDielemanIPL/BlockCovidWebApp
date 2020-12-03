@@ -1,4 +1,5 @@
 import React from "react";
+import textes from "strings/accueilStrings";
 const Header = () => {
   return (
     <div>
@@ -19,24 +20,21 @@ const Header = () => {
                 <span className="icon-bar" />
               </button>
               <a className="navbar-brand" href="./index.html">
-                BLOCKCOVID
+                {textes.APP_NAME}
               </a>
             </div>
             <div className="collapse navbar-collapse" id="navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
                 <li>
-                  <a href="./index.html">Accueil</a>
+                  <a href="todo">{textes.ACCUEIL}</a>
                 </li>
                 <li>
-                  <a href="./project.html">Inscription</a>
+                  <a href="todo">{textes.INSCRIPTION}</a>
                 </li>
                 <li>
                   <p>
-                    <a
-                      href="./components.html"
-                      className="btn btn-default navbar-btn"
-                    >
-                      Connexion
+                    <a href="todo" className="btn btn-default navbar-btn">
+                      {textes.CONNEXION}
                     </a>
                   </p>
                 </li>
