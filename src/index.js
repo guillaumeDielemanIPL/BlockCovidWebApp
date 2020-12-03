@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import "styles/index.css";
 import "styles/template.css";
 //import App from "components/APITester/App.jsx";
-import HomeView from "components/Home/HomeView.jsx";
+import AppRouter from "components/AppRouter/AppRouter";
 ReactDOM.render(
   <React.StrictMode>
-    <HomeView />
+    <AppRouter />
   </React.StrictMode>,
   document.getElementById("root")
 );

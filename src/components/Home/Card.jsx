@@ -1,6 +1,7 @@
 import React from "react";
-
-const Card = ({ image, titre, description, handleShow }) => {
+import { Link } from "react-router-dom";
+import textes from "strings/accueilStrings";
+const Card = ({ image, titre, description, urlInscription }) => {
   return (
     <div className="card ">
       <img
@@ -13,12 +14,12 @@ const Card = ({ image, titre, description, handleShow }) => {
       <div className="card-body">
         <h5 className="card-title">{titre}</h5>
         <p className="card-text">{description}</p>
-        <button className="btn btn-primary" onClick={handleShow}>
-          S'inscrire
-        </button>
+        <Link className="btn btn-primary" to={urlInscription}>
+          {textes.INSCRIRE}
+        </Link>
         {"   "}
         ou
-        <button className="btn btn-link">Se connecter</button>
+        <button className="btn btn-link">{textes.CONNECTER}</button>
       </div>
     </div>
   );

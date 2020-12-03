@@ -20,6 +20,19 @@ Une fois installé, vous pouvvez lancer l'application en lancant un terminal, al
 npm start
 ```
 
+## Packages
+
+### Craco
+
+Craco me permet de scoppé des feuille de style sur des composants
+Les feuilles de styles terminant par .scopped.css sont des feuilles de styles scoppé à un composant
+
+## Arboréscence
+
+Aucunes string n'est hardcodé, elles se trouvent toutes dans les fichiers du dossier /strings
+
+Aucunes URLs n'est hardcodé, elles se trouvent toutes dans les fichiers du dossier /urls
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -1,5 +1,5 @@
 import React from "react";
-import textes from "strings/homeStrings";
+import textes from "strings/accueilStrings";
 const Footer = () => {
   return (
     <footer className="footer-container white-text-container">

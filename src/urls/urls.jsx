@@ -1,0 +1,7 @@
+const URLS = {};
+URLS.ACCUEIL = "/";
+URLS.INSCRIPTION = URLS.ACCUEIL + "inscription/";
+URLS.INSCRIPTION_ETABLISSEMENT = URLS.INSCRIPTION + "etablissement/";
+URLS.INSCRIPTION_MEDECIN = URLS.INSCRIPTION + "medecin/";
+
+export default URLS;
