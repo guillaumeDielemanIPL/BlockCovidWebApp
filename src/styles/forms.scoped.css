@@ -6,34 +6,34 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.background-colored {
+.scoped-background-colored {
   height: 100vh;
   width: 100%;
   background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
 }
-.show-btn,
-.container {
+.scoped-show-btn,
+.scoped-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.container {
+.scoped-container {
   background: #fff;
   width: 410px;
   padding: 20px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
-.container .text {
+.scoped-container .scoped-text {
   font-size: 20px;
   font-weight: 600;
   text-align: center;
 }
-.container form {
+.scoped-container form {
   margin-top: -20px;
 }
-.container form .data {
+.scoped-container form .scoped-data {
   height: 30px;
   width: 100%;
   margin: 40px 0;
@@ -41,33 +41,33 @@
 form .data label {
   font-size: 12px;
 }
-form .data input {
+form .scoped-data input {
   height: 100%;
   width: 100%;
   padding-left: 10px;
   font-size: 13px;
   border: 1px solid silver;
 }
-form .data input:focus {
+form .scoped-data input:focus {
   border-color: #3498db;
   border-bottom-width: 2px;
 }
 
-form .forgot-pass a {
+form .scoped-forgot-pass a {
   color: #3498db;
   text-decoration: none;
 }
-form .forgot-pass a:hover {
+form .scoped-forgot-pass a:hover {
   text-decoration: underline;
 }
-form .btn {
+form .scoped-btn {
   margin: 30px 0;
   height: 45px;
   width: 100%;
   position: relative;
   overflow: hidden;
 }
-form .btn .inner {
+form .scoped-btn .scoped-inner {
   height: 100%;
   width: 300%;
   position: absolute;
@@ -82,10 +82,10 @@ form .btn .inner {
   );
   transition: all 0.4s;
 }
-form .btn:hover .inner {
+form .scoped-btn:hover .scoped-inner {
   left: 0;
 }
-form .btn button {
+form .scoped-btn button {
   height: 100%;
   width: 100%;
   background: none;
@@ -97,13 +97,13 @@ form .btn button {
   letter-spacing: 1px;
   cursor: pointer;
 }
-form .signup-link {
+form .scoped-signup-link {
   text-align: center;
 }
-form .signup-link a {
+form .scoped-signup-link a {
   color: #3498db;
   text-decoration: none;
 }
-form .signup-link a:hover {
+form .scoped-signup-link a:hover {
   text-decoration: underline;
 }

@@ -3,12 +3,12 @@ import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
 const InscriptionEtablissementView = () => {
   return (
-    <div className="background-colored">
-      <div className="center">
-        <div className="container">
-          <div className="text">{textes.TITRE}</div>
+    <div className="scoped-background-colored">
+      <div className="scoped-center">
+        <div className="scoped-container">
+          <div className="scoped-text">{textes.TITRE}</div>
           <form action="#">
-            <div className="data">
+            <div className="scoped-data">
               <label>{textes.NOM_ETABLISSEMENT}</label>
               <input
                 type="text"
@@ -16,7 +16,7 @@ const InscriptionEtablissementView = () => {
                 required
               />
             </div>
-            <div className="data">
+            <div className="scoped-data">
               <label>{textes.ADRESSE}</label>
               <input
                 type="text"
@@ -24,7 +24,7 @@ const InscriptionEtablissementView = () => {
                 required
               />
             </div>
-            <div className="data">
+            <div className="scoped-data">
               <label>{textes.MAIL}</label>
               <input
                 type="email"
@@ -32,12 +32,12 @@ const InscriptionEtablissementView = () => {
                 required
               />
             </div>
-            <div className="data">
+            <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
               <input type="password" required />
             </div>
-            <div className="btn">
-              <div className="inner"></div>
+            <div className="scoped-btn">
+              <div className="scoped-inner"></div>
               <button type="submit">{textes.CREER_COMPTE}</button>
             </div>
           </form>
