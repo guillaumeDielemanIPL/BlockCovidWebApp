@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import textes from "strings/accueilStrings";
+import URLS from "urls/urls";
 const Header = () => {
   return (
     <div>
@@ -33,9 +35,12 @@ const Header = () => {
                 </li>
                 <li>
                   <p>
-                    <a href="todo" className="btn btn-default navbar-btn">
+                    <Link
+                      to={URLS.CONNEXION}
+                      className="btn btn-default navbar-btn"
+                    >
                       {textes.CONNEXION}
-                    </a>
+                    </Link>
                   </p>
                 </li>
               </ul>

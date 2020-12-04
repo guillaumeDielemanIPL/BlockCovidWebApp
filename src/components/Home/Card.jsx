@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import textes from "strings/accueilStrings";
+import URLS from "urls/urls";
 const Card = ({ image, titre, description, urlInscription }) => {
   return (
     <div className="card ">
@@ -19,7 +20,9 @@ const Card = ({ image, titre, description, urlInscription }) => {
         </Link>
         {"   "}
         ou
-        <button className="btn btn-link">{textes.CONNECTER}</button>
+        <Link className="btn btn-link" to={URLS.CONNEXION}>
+          {textes.CONNECTER}
+        </Link>
       </div>
     </div>
   );
