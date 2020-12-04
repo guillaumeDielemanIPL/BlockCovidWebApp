@@ -6,10 +6,14 @@ import ConnexionView from "components/Connexion/ConnexionView";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import URLS from "urls/urls";
+import QRGenerator from "components/QRCodeGenerator/QRGenerator";
 const AppRouter = () => {
   return (
     <Router>
       <Switch>
+        <Route path={URLS.QRGENERATOR}>
+          <QRGenerator />
+        </Route>
         <Route path={URLS.INSCRIPTION_MEDECIN}>
           <InscriptionMedecinView />
         </Route>

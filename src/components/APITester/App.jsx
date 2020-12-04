@@ -52,8 +52,8 @@ const App = () => {
           type="text"
           size="100"
           onChange={onChangeUrl}
-          value="https://stopcovid-pfe.azurewebsites.net/"
-        ></input>
+          value="https://blockcovid-pfe.azurewebsites.net/"
+        />
         <br />
         <label>Type</label>
         <select onChange={onChangeType}>
@@ -65,7 +65,7 @@ const App = () => {
         <br />
         <label>Data</label>
         <br />
-        <textarea onChange={onChangeData}></textarea>
+        <textarea onChange={onChangeData} />
         <br />
         <button onClick={onSendRequest}>ENVOYER LA REQUETE</button>
       </form>
