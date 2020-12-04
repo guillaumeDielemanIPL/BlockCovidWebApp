@@ -16,9 +16,8 @@ const QRGenerator = () => {
     settext(event.target.value);
   };
   if (base64Image.length > 1) {
-    {
-      console.log("send to Downloader :", base64Image);
-    }
+    console.log("send to Downloader :", base64Image);
+
     return <QRDownloader base64Image={base64Image} />;
   } else {
     return (
