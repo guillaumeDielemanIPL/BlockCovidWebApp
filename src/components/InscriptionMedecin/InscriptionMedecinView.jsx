@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
+import apiUrls from "urls/apiUrls";
 const InscriptionMedecinView = () => {
   const [nom, setnom] = useState("");
   const [prenom, setprenom] = useState("");
@@ -33,13 +34,14 @@ const InscriptionMedecinView = () => {
     };
     console.log(medecin);
     axios
-      .post(
-        "https://blockcovid-pfe.azurewebsites.net/api/auth/register/medecin",
-        medecin
-      )
+      .post(apiUrls.INSCRIPTION_MEDECIN, medecin)
       .then((response) => {
         console.log(response);
-        //TODO manage what to do after depends of response...
+        localStorage.setItem("token", response.data);
+        //TODO redirect to MEDECIN CONNECTED VIEW
+      })
+      .catch((error) => {
+        console.warn(error);
       });
   };
   return (

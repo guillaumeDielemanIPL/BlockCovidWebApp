@@ -17,7 +17,10 @@ const QRDownloader = ({ base64Image }) => {
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Image source={{ uri: base64Image }} />
+        <Image
+          // @ts-ignore
+          source={{ uri: base64Image }}
+        />
       </Page>
     </Document>
   );
