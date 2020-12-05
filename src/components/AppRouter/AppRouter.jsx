@@ -7,12 +7,16 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import URLS from "urls/urls";
 import QRGenerator from "components/QRCodeGenerator/QRGenerator";
+import ConnectedMedecinView from "components/ConnectedMedecin/ConnectedMedecinView";
 const AppRouter = () => {
   return (
     <Router>
       <Switch>
         <Route path={URLS.QRGENERATOR}>
           <QRGenerator />
+        </Route>
+        <Route path={URLS.MEDECIN_CONNECTED}>
+          <ConnectedMedecinView />
         </Route>
         <Route path={URLS.INSCRIPTION_MEDECIN}>
           <InscriptionMedecinView />

@@ -2,7 +2,7 @@ import React from "react";
 import textes from "strings/accueilStrings";
 import URLS from "urls/urls";
 import { Link } from "react-router-dom";
-const Header = () => {
+const HeaderUnlogged = () => {
   return (
     <div>
       <header>
@@ -35,8 +35,11 @@ const Header = () => {
                 </li>
                 <li>
                   <p>
-                    <Link className="btn btn-default navbar-btn" to={URLS.CONNEXION}>
-                        {textes.CONNEXION}
+                    <Link
+                      className="btn btn-default navbar-btn"
+                      to={URLS.CONNEXION}
+                    >
+                      {textes.CONNEXION}
                     </Link>
                   </p>
                 </li>
@@ -48,4 +51,4 @@ const Header = () => {
     </div>
   );
 };
-export default Header;
+export default HeaderUnlogged;
