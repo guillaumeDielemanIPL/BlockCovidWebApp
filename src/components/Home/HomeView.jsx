@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "components/Home/Header.jsx";
 import HomeContent from "components/Home/HomeContent";
-import Footer from "./Footer";
+import Footer from "components/Home/Footer";
 const HomeView = () => {
   return (
     <div>

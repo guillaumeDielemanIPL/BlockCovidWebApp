@@ -6,6 +6,7 @@ import ConnexionView from "components/Connexion/ConnexionView";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import URLS from "urls/urls";
+import AjoutLieuView from "components/AjoutLieu/AjoutLieuView";
 const AppRouter = () => {
   return (
     <Router>
@@ -21,6 +22,9 @@ const AppRouter = () => {
         </Route>
         <Route path={URLS.CONNEXION}>
           <ConnexionView />
+        </Route>
+        <Route path={URLS.AJOUTLIEU}>
+          <AjoutLieuView />
         </Route>
         <Route path={URLS.ACCUEIL}>
           <HomeView />

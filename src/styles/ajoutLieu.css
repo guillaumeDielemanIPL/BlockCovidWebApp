@@ -1,0 +1,90 @@
+h1 {
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  color: #111;
+  font-weight: lighter;
+  font-family: Roboto, sans-serif;
+}
+
+table,
+th,
+td {
+  padding: 20px 20px;
+  width: 50%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+form {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+label {
+  font-size: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+input {
+  padding: 5px 5px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #cfcfcf;
+}
+
+button {
+  margin-left: 2%;
+  margin-top: 3%;
+  font-size: 0.7em;
+  border-radius: 5px;
+  block-size: 100%;
+  width: 200px;
+  height: 40px;
+  background-color: #1763e9;
+  color: #ffffff;
+  border-color: #1763e9;
+  border: 1px solid #cfcfcf;
+}
+
+button.focus,
+button:focus {
+  background-color: #0b3275;
+  border-color: #0b3275;
+}
+button.active,
+button:active,
+button:hover,
+button.active.focus,
+button.active:focus,
+button.active:hover,
+button:active.focus,
+button:active:focus,
+button:active:hover {
+  background-color: #0b3275;
+  border-color: #0b3275;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nomLieu {
+  margin-right: 1%;
+}
+
+.description {
+  margin-left: 1%;
+}
+
+.nomLieu,
+.description {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
