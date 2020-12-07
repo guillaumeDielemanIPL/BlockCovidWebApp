@@ -23,8 +23,9 @@ const ConnexionView = () => {
     axios
       .post(apiUrls.CONNEXION_MEDECIN, user)
       .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data);
+        console.log("Response data :", response.data.token);
+        localStorage.setItem("token", response.data.token);
+        console.log("Put in local storage", localStorage.getItem("token"));
         //TODO redirect to MEDECIN CONNECTED VIEW
       })
       .catch((error) => {
