@@ -1,6 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Hind+Siliguri:300,
+@import url(
+  https://fonts.googleapis.com/css?family=Hind+Siliguri:300,
   600|Martel:400,
-  900);
+  900
+);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -349,6 +351,16 @@ hr {
 [role="button"] {
   cursor: pointer;
 }
+
+.h0 {
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  color: #111;
+  font-weight: lighter;
+  font-family: Roboto, sans-serif;
+}
+
 .h1,
 .h2,
 .h3,
@@ -1605,7 +1617,8 @@ th {
 .table-bordered > tfoot > tr > th,
 .table-bordered > thead > tr > td,
 .table-bordered > thead > tr > th {
-  border: 1px solid #ddd;
+  border: 1px solid silver;
+  border-radius: 5px;
 }
 .table-bordered > thead > tr > td,
 .table-bordered > thead > tr > th {
@@ -4034,6 +4047,9 @@ a.label:hover {
 .label-primary[href]:hover {
   background-color: #124fbb;
 }
+.label-block {
+  margin-bottom: 0.2em;
+}
 .label-success {
   background-color: #5cb85c;
 }
@@ -4750,6 +4766,11 @@ button.close {
 .hero-full-container {
   padding: 20% 0;
 }
+.table-container {
+  padding: 30px;
+  width: 70%;
+  text-align: center;
+}
 @media (min-width: 992px) {
   .hero-full-container {
     padding: 15% 0;
@@ -4758,6 +4779,7 @@ button.close {
 .hero-container {
   padding: 120px 0 60px;
 }
+
 .white-text-container a,
 .white-text-container h1,
 .white-text-container h2,

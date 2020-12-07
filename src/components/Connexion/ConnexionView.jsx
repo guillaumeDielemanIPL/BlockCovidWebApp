@@ -1,7 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import "styles/forms.scoped.css";
 import textes from "strings/connexionStrings";
+import axios from "axios";
+import apiUrls from "urls/apiUrls";
 const ConnexionView = () => {
+  const [email, setemail] = useState("");
+  const [motDePasse, setmotDePasse] = useState("");
+  const onChangeEmail = (event) => {
+    event.preventDefault();
+    setemail(event.target.value);
+  };
+  const onChangeMDP = (event) => {
+    event.preventDefault();
+    setmotDePasse(event.target.value);
+  };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const user = {
+      email: email,
+      password: motDePasse,
+    };
+    axios
+      .post(apiUrls.CONNEXION_MEDECIN, user)
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.data);
+        //TODO redirect to MEDECIN CONNECTED VIEW
+      })
+      .catch((error) => {
+        console.warn(error);
+        console.warn("try etablissement");
+        axios
+          .post(apiUrls.CONNEXION_ETABLISSEMENT, user)
+          .then((response) => {
+            console.log(response);
+            localStorage.setItem("token", response.data);
+            //TODO redirect to ETABLISSEMENT CONNECTED VIEW
+          })
+          .catch((error) => {
+            console.warn(error);
+            console.warn("NOT ETABLISSEMENT AND NOT MEDECIN");
+          });
+      });
+  };
   return (
     <div className="scoped-background-colored">
       <div className="scoped-center">
@@ -13,16 +54,19 @@ const ConnexionView = () => {
               <input
                 type="text"
                 placeholder={textes.PLACEHOLDER_MAIL}
+                onChange={onChangeEmail}
                 required
               />
             </div>
             <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
-              <input type="password" required />
+              <input type="password" onChange={onChangeMDP} required />
             </div>
             <div className="scoped-btn">
               <div className="scoped-inner" />
-              <button type="submit">{textes.CONNECTER}</button>
+              <button onClick={onSubmit} type="submit">
+                {textes.CONNECTER}
+              </button>
             </div>
           </form>
         </div>
