@@ -22,17 +22,17 @@ const ConnectedEtablissementContent = () => {
             });
     }
 
-    useEffect(initialLoad,[])
+  useEffect(initialLoad, []);
 
-    const handleNom = (event) =>{
-        event.preventDefault()
-        setNomLieu(event.target.value);
-    }
+  const handleNom = (event) => {
+    event.preventDefault();
+    setNomLieu(event.target.value);
+  };
 
-    const handleDescription = (event) =>{
-        event.preventDefault()
-        setDescription(event.target.value)
-    }
+  const handleDescription = (event) => {
+    event.preventDefault();
+    setDescription(event.target.value);
+  };
 
     const handleSubmitLieu = (event) => {
         setError("");
@@ -56,7 +56,7 @@ const ConnectedEtablissementContent = () => {
 
   return (
     <div>
-        <div className="container">
+      <div className="container">
         <h1 className="h0">{textes.TITRE}</h1>
         <div className="has-error help-block text-center">{error}</div>
             <form onSubmit={handleSubmitLieu}>

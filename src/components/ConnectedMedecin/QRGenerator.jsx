@@ -1,13 +1,13 @@
 import React from "react";
 import {
   Document,
+  Image,
   Page,
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
 var QRCode = require("qrcode");
-const QRGenerator = () => {
-  console.log("Repo is upd to date");
+const QRGenerator = ({ qrs }) => {
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",
@@ -19,16 +19,24 @@ const QRGenerator = () => {
       flexGrow: 1,
     },
   });
-  let base64Image;
-  QRCode.toDataURL("Hello world on a QR code", function (err, url) {
-    base64Image = "data:application/pdf" + url.slice(url.indexOf(";"));
-    console.log(base64Image);
-  });
+  let base64Images = [];
+  for (let i = 0; i < qrs.length; i++) {
+    QRCode.toDataURL(qrs[i].contenu, function (err, url) {
+      base64Images[i] = {
+        image: "data:application/pdf" + url.slice(url.indexOf(";")),
+        id: i,
+      };
+    });
+  }
+
   const MyDocument = () => (
     <Document>
-      <Page size="A4" style={styles.page}>
-        {/* <Image source={{ uri: base64Image }} /> */}
-      </Page>
+      {base64Images.map((img) => (
+        <Page key={img.id} size="A4" style={styles.page}>
+          <Image source={{ uri: img.image }} />
+        </Page>
+      ))}
+      {/* <Image source={{ uri: base64Image }} /> */}
     </Document>
   );
   return (
