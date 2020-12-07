@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import "styles/forms.scoped.css";
 import textes from "strings/connexionStrings";
 import axios from "axios";
+import urls from "urls/urls";
 import apiUrls from "urls/apiUrls";
+import { useHistory } from "react-router-dom";
+
 const ConnexionView = () => {
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
+  const [error, setError] = useState("");
+  const history = useHistory();
+
   const onChangeEmail = (event) => {
     event.preventDefault();
     setemail(event.target.value);
@@ -16,6 +22,7 @@ const ConnexionView = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    setError("");
     const user = {
       email: email,
       password: motDePasse,
@@ -25,21 +32,21 @@ const ConnexionView = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data);
-        //TODO redirect to MEDECIN CONNECTED VIEW
+        history.push(urls.MEDECIN_CONNECTED);
       })
-      .catch((error) => {
-        console.warn(error);
+      .catch(() => {
         console.warn("try etablissement");
         axios
           .post(apiUrls.CONNEXION_ETABLISSEMENT, user)
           .then((response) => {
             console.log(response);
-            localStorage.setItem("token", response.data);
-            //TODO redirect to ETABLISSEMENT CONNECTED VIEW
+            localStorage.setItem("token", response.data.token);
+            history.push(urls.ETABLISSEMENT_CONNECTED);
           })
           .catch((error) => {
-            console.warn(error);
-            console.warn("NOT ETABLISSEMENT AND NOT MEDECIN");
+            //NOT ETABLISSEMENT AND NOT MEDECIN
+            console.warn(error.response.data.error);
+            setError(error.response.data.error);
           });
       });
   };
@@ -48,6 +55,7 @@ const ConnexionView = () => {
       <div className="scoped-center">
         <div className="scoped-container">
           <div className="scoped-text">{textes.TITRE}</div>
+          <div className="has-error help-block text-center">{error}</div>
           <form action="#">
             <div className="scoped-data">
               <label>{textes.MAIL}</label>

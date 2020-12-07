@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import apiUrls from "urls/apiUrls";
+import urls from "urls/urls";
 import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
+import { useHistory } from "react-router-dom";
+
 const InscriptionEtablissementView = () => {
   const [nom, setnom] = useState("");
   const [adresse, setadresse] = useState("");
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
+  const [error, setError] = useState("");
+  const history = useHistory();
+
   const onChangeNom = (event) => {
     event.preventDefault();
     setnom(event.target.value);
@@ -26,6 +32,7 @@ const InscriptionEtablissementView = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    setError("");
     const etablissement = {
       nom: nom,
       adresse: adresse,
@@ -38,10 +45,11 @@ const InscriptionEtablissementView = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data);
-        //TODO redirect to ETABLISSEMENT CONNECTED VIEW
+        history.push(urls.ETABLISSEMENT_CONNECTED)
       })
       .catch((error) => {
-        console.warn(error);
+        console.error(error.response.data.error);
+        setError(error.response.data.error);
       });
   };
   return (
@@ -49,6 +57,7 @@ const InscriptionEtablissementView = () => {
       <div className="scoped-center">
         <div className="scoped-container">
           <div className="scoped-text">{textes.TITRE}</div>
+          <div className="has-error help-block text-center">{error}</div>
           <form action="#">
             <div className="scoped-data">
               <label>{textes.NOM_ETABLISSEMENT}</label>

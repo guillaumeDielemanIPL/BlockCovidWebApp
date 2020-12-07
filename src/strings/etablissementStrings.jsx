@@ -6,7 +6,8 @@ const AJOUTLIEU_STRINGS = {
     PLACEHOLDER_DESCRIPTION: "Table à gauche de l'entrée",
     CREER: "Créer",
     LIEUX: "Mes lieux",
-    TELECHARGER: "Télécharger ce QR code"
+    TELECHARGER: "Télécharger ce QR code",
+    VIDE: "Aucun lieu"
   };
   
   export default AJOUTLIEU_STRINGS;

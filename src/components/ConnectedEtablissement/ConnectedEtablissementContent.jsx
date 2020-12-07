@@ -4,15 +4,22 @@ import etablissementService from "services/etablissementService";
 import LieuView from "components/ConnectedEtablissement/LieuView";
 
 const ConnectedEtablissementContent = () => {
-    const [nomLieu, setNomLieu] = useState('')
-    const [description, setDescription] = useState('')
+    const [nomLieu, setNomLieu] = useState("")
+    const [description, setDescription] = useState("")
     const [lieux, setLieux] = useState([])
-
+    const [error, setError] = useState("");
+    
     const initialLoad = () => {
         etablissementService
             .getAll()
-            .then(lieux => setLieux(lieux))
-            .catch(error => console.error(error))
+            .then(response => { 
+                console.log(response)
+                setLieux(response)
+            })
+            .catch((error) => {
+                console.warn(error.response.data.error);
+                setError(error.response.data.error);
+            });
     }
 
     useEffect(initialLoad,[])
@@ -28,6 +35,7 @@ const ConnectedEtablissementContent = () => {
     }
 
     const handleSubmitLieu = (event) => {
+        setError("");
         event.preventDefault()
         const lieu = {
             nom: nomLieu,
@@ -35,16 +43,22 @@ const ConnectedEtablissementContent = () => {
         }
         etablissementService
             .create(lieu)
-            .then(newLieu => 
+            .then(newLieu => {
                 setLieux(lieux.concat(newLieu))
-            )
-            .catch(error => console.error(error))
+                setNomLieu("")
+                setDescription("")
+            })
+            .catch((error) => {
+                console.warn(error.response.data.error);
+                setError(error.response.data.error);
+            });
     }
 
   return (
     <div>
         <div className="container">
         <h1 className="h0">{textes.TITRE}</h1>
+        <div className="has-error help-block text-center">{error}</div>
             <form onSubmit={handleSubmitLieu}>
                 <div className="col-sm-3 col-xs-offset-2">
                     <label className="label-block">{textes.NOM_LIEU}</label>
@@ -73,13 +87,12 @@ const ConnectedEtablissementContent = () => {
         </div>
         <div className="container">
             <h1 className="h0">{textes.LIEUX}</h1>
-            <table className="table-bordered col-xs-offset-2 table-container">
-                <tr>
-                    {lieux.map(lieu => 
-                        <LieuView key={lieu.id} texte={textes.LIEUX} lieu={lieu} />)
-                    }
-                </tr>
-            </table>
+                {lieux.length === 0 ? 
+                    <p className="text-center">{textes.VIDE}</p>
+                        : 
+                    lieux.map(lieu => (
+                        <LieuView key={lieu.id} texte={textes.TELECHARGER} lieu={lieu} />)
+                )}
         </div>
     </div>
   );

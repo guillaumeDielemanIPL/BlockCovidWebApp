@@ -3,11 +3,17 @@ import axios from "axios";
 import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
 import apiUrls from "urls/apiUrls";
+import urls from "urls/urls"
+import { useHistory } from "react-router-dom";
+
 const InscriptionMedecinView = () => {
   const [nom, setnom] = useState("");
   const [prenom, setprenom] = useState("");
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
+  const [error, setError] = useState("");
+  const history = useHistory();
+
   const onChangeNom = (event) => {
     event.preventDefault();
     setnom(event.target.value);
@@ -26,6 +32,8 @@ const InscriptionMedecinView = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    setError("");
+
     const medecin = {
       nom: nom,
       prenom: prenom,
@@ -38,10 +46,11 @@ const InscriptionMedecinView = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data);
-        //TODO redirect to MEDECIN CONNECTED VIEW
+        history.push(urls.MEDECIN_CONNECTED);
       })
       .catch((error) => {
-        console.warn(error);
+        console.warn(error.response.data.error);
+        setError(error.response.data.error);
       });
   };
   return (
@@ -49,6 +58,7 @@ const InscriptionMedecinView = () => {
       <div className="scoped-center">
         <div className="scoped-container">
           <div className="scoped-text">{textes.TITRE}</div>
+          <div className="has-error help-block text-center">{error}</div>
           <form>
             <div className="scoped-data">
               <label>{textes.NOM}</label>
