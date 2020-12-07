@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "components/Home/Header.jsx";
+import HeaderUnlogged from "components/Headers/HeaderUnlogged.jsx";
 import HomeContent from "components/Home/HomeContent";
-import Footer from "components/Home/Footer";
+import Footer from "components/SharedComponents/Footer";
 const HomeView = () => {
   return (
     <div>
-      <Header />
+      <HeaderUnlogged />
       <HomeContent />
       <Footer />
     </div>
