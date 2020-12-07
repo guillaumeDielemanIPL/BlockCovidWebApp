@@ -1,5 +1,5 @@
 import React from "react";
-import { Document, Page, StyleSheet, Image } from "@react-pdf/renderer";
+import { Document, Page, StyleSheet } from "@react-pdf/renderer";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 var QRCode = require("qrcode");
 const QRGenerator = () => {
@@ -22,7 +22,7 @@ const QRGenerator = () => {
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Image source={{ uri: base64Image }} />
+        {/* <Image source={{ uri: base64Image }} /> */}
       </Page>
     </Document>
   );
