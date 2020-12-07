@@ -29,7 +29,7 @@ const QRGenerator = () => {
   return (
     <div>
       <div>
-        <PDFDownloadLink
+        {/* <PDFDownloadLink
           document={<MyDocument />}
           fileName="blockCovidQRCodes.pdf"
         >
@@ -38,7 +38,7 @@ const QRGenerator = () => {
               ? "Chargement du cocument..."
               : "Télécharger maintenant vos QR codes!"
           }
-        </PDFDownloadLink>
+        </PDFDownloadLink> */}
       </div>
     </div>
   );
