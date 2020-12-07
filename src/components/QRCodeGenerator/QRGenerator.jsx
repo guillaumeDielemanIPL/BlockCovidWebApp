@@ -7,6 +7,7 @@ import {
 } from "@react-pdf/renderer";
 var QRCode = require("qrcode");
 const QRGenerator = () => {
+  console.log("Repo is upd to date");
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",
