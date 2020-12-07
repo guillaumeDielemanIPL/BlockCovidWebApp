@@ -1,35 +1,47 @@
-import React, { useState } from "react";
-import QRDownloader from "./QRDownloader";
+import React from "react";
+import { Document, Page, StyleSheet, Image } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 var QRCode = require("qrcode");
 const QRGenerator = () => {
-  const [text, settext] = useState("");
-  const [base64Image, setbase64Image] = useState("");
-  const onSubmit = (event) => {
-    event.preventDefault();
-    QRCode.toDataURL(text, function (err, url) {
-      setbase64Image("data:application/pdf" + url.slice(url.indexOf(";")));
-      console.log(base64Image);
-    });
-  };
-  const onTextChange = (event) => {
-    event.preventDefault();
-    settext(event.target.value);
-  };
-  if (base64Image.length > 1) {
-    console.log("send to Downloader :", base64Image);
-
-    return <QRDownloader base64Image={base64Image} />;
-  } else {
-    return (
+  const styles = StyleSheet.create({
+    page: {
+      flexDirection: "row",
+      backgroundColor: "#E4E4E4",
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1,
+    },
+  });
+  let base64Image;
+  QRCode.toDataURL("Hello world on a QR code", function (err, url) {
+    base64Image = "data:application/pdf" + url.slice(url.indexOf(";"));
+    console.log(base64Image);
+  });
+  const MyDocument = () => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <Image source={{ uri: base64Image }} />
+      </Page>
+    </Document>
+  );
+  return (
+    <div>
       <div>
-        <div>
-          <label>Entrez qqch à encoder dans le QR Code :</label>
-          <input onChange={onTextChange} type="text" />
-          <button onClick={onSubmit}>Générer</button>
-        </div>
+        <PDFDownloadLink
+          document={<MyDocument />}
+          fileName="blockCovidQRCodes.pdf"
+        >
+          {({ blob, url, loading, error }) =>
+            loading
+              ? "Chargement du cocument..."
+              : "Télécharger maintenant vos QR codes!"
+          }
+        </PDFDownloadLink>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default QRGenerator;
