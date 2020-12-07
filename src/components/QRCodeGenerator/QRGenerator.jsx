@@ -1,7 +1,7 @@
 import React from "react";
-import { Document, Page, StyleSheet } from "@react-pdf/renderer";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-// var QRCode = require("qrcode");
+// import { Document, Page, StyleSheet } from "@react-pdf/renderer";
+// import { PDFDownloadLink } from "@react-pdf/renderer";
+var QRCode = require("qrcode");
 const QRGenerator = () => {
   // const styles = StyleSheet.create({
   //   page: {
