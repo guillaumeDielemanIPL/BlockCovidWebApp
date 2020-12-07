@@ -14,11 +14,11 @@ const QRGenerator = () => {
       flexGrow: 1,
     },
   });
-  let base64Image;
-  QRCode.toDataURL("Hello world on a QR code", function (err, url) {
-    base64Image = "data:application/pdf" + url.slice(url.indexOf(";"));
-    console.log(base64Image);
-  });
+  // let base64Image;
+  // QRCode.toDataURL("Hello world on a QR code", function (err, url) {
+  //   base64Image = "data:application/pdf" + url.slice(url.indexOf(";"));
+  //   console.log(base64Image);
+  // });
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
