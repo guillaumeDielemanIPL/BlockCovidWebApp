@@ -7,15 +7,15 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import URLS from "urls/urls";
 import ConnectedEtablissementView from "components/ConnectedEtablissement/ConnectedEtablissementView";
-import QRGenerator from "components/QRCodeGenerator/QRGenerator";
+// import QRGenerator from "components/QRCodeGenerator/QRGenerator";
 import ConnectedMedecinView from "components/ConnectedMedecin/ConnectedMedecinView";
 const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route path={URLS.QRGENERATOR}>
+        {/* <Route path={URLS.QRGENERATOR}>
           <QRGenerator />
-        </Route>
+        </Route> */}
         <Route path={URLS.MEDECIN_CONNECTED}>
           <ConnectedMedecinView />
         </Route>
