@@ -3,7 +3,7 @@ import axios from "axios";
 import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
 import apiUrls from "urls/apiUrls";
-import urls from "urls/urls"
+import urls from "urls/urls";
 import { useHistory } from "react-router-dom";
 
 const InscriptionMedecinView = () => {
@@ -45,7 +45,7 @@ const InscriptionMedecinView = () => {
       .post(apiUrls.INSCRIPTION_MEDECIN, medecin)
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", response.data);
+        localStorage.setItem("token", response.data.token);
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch((error) => {

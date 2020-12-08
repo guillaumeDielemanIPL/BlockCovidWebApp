@@ -44,8 +44,8 @@ const InscriptionEtablissementView = () => {
       .post(apiUrls.INSCRIPTION_ETABLISSEMENT, etablissement)
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", response.data);
-        history.push(urls.ETABLISSEMENT_CONNECTED)
+        localStorage.setItem("token", response.data.token);
+        history.push(urls.ETABLISSEMENT_CONNECTED);
       })
       .catch((error) => {
         console.error(error.response.data.error);

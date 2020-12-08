@@ -31,7 +31,7 @@ const ConnexionView = () => {
       .post(apiUrls.CONNEXION_MEDECIN, user)
       .then((response) => {
         console.log(response);
-        localStorage.setItem("token", response.data);
+        localStorage.setItem("token", response.data.token);
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch(() => {

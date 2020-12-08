@@ -1,13 +1,16 @@
 import React from "react";
 import {
   Document,
+  Image,
   Page,
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
+import HeaderLogged from "components/Headers/HeaderLogged";
+import Footer from "components/SharedComponents/Footer";
 var QRCode = require("qrcode");
-const QRGenerator = () => {
-  console.log("Repo is upd to date");
+const SingleQRGenerator = () => {
+  const qr = localStorage.getItem("qr");
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",
@@ -20,33 +23,30 @@ const QRGenerator = () => {
     },
   });
   let base64Image;
-  QRCode.toDataURL("Hello world on a QR code", function (err, url) {
+  QRCode.toDataURL(qr, function (err, url) {
     base64Image = "data:application/pdf" + url.slice(url.indexOf(";"));
-    console.log(base64Image);
   });
+
   const MyDocument = () => (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* <Image source={{ uri: base64Image }} /> */}
+        <Image source={{ uri: base64Image }} />
       </Page>
     </Document>
   );
   return (
     <div>
-      <div>
-        <PDFDownloadLink
-          document={<MyDocument />}
-          fileName="blockCovidQRCodes.pdf"
-        >
-          {({ blob, url, loading, error }) =>
-            loading
-              ? "Chargement du cocument..."
-              : "Télécharger maintenant vos QR codes!"
-          }
-        </PDFDownloadLink>
-      </div>
+      <HeaderLogged />
+      <PDFDownloadLink
+        className="text-center"
+        document={<MyDocument />}
+        fileName="blockCovidQRCode.pdf"
+      >
+        Télécharger maintenant ce QR code!
+      </PDFDownloadLink>
+      <Footer />
     </div>
   );
 };
 
-export default QRGenerator;
+export default SingleQRGenerator;
