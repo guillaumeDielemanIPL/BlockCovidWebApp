@@ -5,6 +5,7 @@ import urls from "urls/urls";
 import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
 import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const InscriptionEtablissementView = () => {
   const [nom, setnom] = useState("");
@@ -12,6 +13,7 @@ const InscriptionEtablissementView = () => {
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const onChangeNom = (event) => {
@@ -32,6 +34,7 @@ const InscriptionEtablissementView = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     setError("");
     const etablissement = {
       nom: nom,
@@ -50,6 +53,7 @@ const InscriptionEtablissementView = () => {
       .catch((error) => {
         console.error(error.response.data.error);
         setError(error.response.data.error);
+        setLoading(false);
       });
   };
   return (
@@ -94,6 +98,9 @@ const InscriptionEtablissementView = () => {
               <div className="scoped-inner" />
               <button type="submit" onClick={onSubmit}>
                 {textes.CREER_COMPTE}
+                <div className="sweet-loading">
+                  <ClipLoader size={15} color={"#FFFFF"} loading={loading} />
+                </div>
               </button>
             </div>
           </form>

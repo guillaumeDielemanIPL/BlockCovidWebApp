@@ -5,11 +5,13 @@ import axios from "axios";
 import urls from "urls/urls";
 import apiUrls from "urls/apiUrls";
 import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ConnexionView = () => {
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const onChangeEmail = (event) => {
@@ -22,6 +24,7 @@ const ConnexionView = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     setError("");
     const user = {
       email: email,
@@ -47,6 +50,7 @@ const ConnexionView = () => {
             //NOT ETABLISSEMENT AND NOT MEDECIN
             console.warn(error.response.data.error);
             setError(error.response.data.error);
+            setLoading(false);
           });
       });
   };
@@ -70,10 +74,14 @@ const ConnexionView = () => {
               <label>{textes.MOT_DE_PASSE}</label>
               <input type="password" onChange={onChangeMDP} required />
             </div>
+
             <div className="scoped-btn">
               <div className="scoped-inner" />
               <button onClick={onSubmit} type="submit">
                 {textes.CONNECTER}
+                <div className="sweet-loading">
+                  <ClipLoader size={15} color={"#FFFFF"} loading={loading} />
+                </div>
               </button>
             </div>
           </form>

@@ -1,7 +1,7 @@
 import React from "react";
 import textes from "strings/medecinStrings";
 import URLS from "urls/urls";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const HeaderLogged = () => {
   const history = useHistory();
   const onLogout = (event) => {

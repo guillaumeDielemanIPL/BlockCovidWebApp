@@ -4,6 +4,7 @@ import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
 import apiUrls from "urls/apiUrls";
 import urls from "urls/urls";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory } from "react-router-dom";
 
 const InscriptionMedecinView = () => {
@@ -12,6 +13,7 @@ const InscriptionMedecinView = () => {
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const onChangeNom = (event) => {
@@ -32,6 +34,7 @@ const InscriptionMedecinView = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     setError("");
 
     const medecin = {
@@ -51,6 +54,7 @@ const InscriptionMedecinView = () => {
       .catch((error) => {
         console.warn(error.response.data.error);
         setError(error.response.data.error);
+        setLoading(false);
       });
   };
   return (
@@ -93,7 +97,12 @@ const InscriptionMedecinView = () => {
             </div>
             <div className="scoped-btn">
               <div className="scoped-inner" />
-              <button onClick={onSubmit}>{textes.CREER_COMPTE}</button>
+              <button onClick={onSubmit}>
+                {textes.CREER_COMPTE}
+                <div className="sweet-loading">
+                  <ClipLoader size={15} color={"#FFFFF"} loading={loading} />
+                </div>
+              </button>
             </div>
           </form>
         </div>
