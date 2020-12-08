@@ -1,8 +1,14 @@
 import React from "react";
 import textes from "strings/medecinStrings";
 import URLS from "urls/urls";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const HeaderLogged = () => {
+  const history = useHistory();
+  const onLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    history.push(URLS.ACCUEIL);
+  };
   return (
     <div>
       <header>
@@ -29,13 +35,12 @@ const HeaderLogged = () => {
               <ul className="nav navbar-nav navbar-right">
                 <li>
                   <p>
-                    {/* TODO Enlever le token du local storage */}
-                    <Link
+                    <button
                       className="btn btn-default navbar-btn"
-                      to={URLS.ACCUEIL}
+                      onClick={onLogout}
                     >
                       {textes.DECONNEXION}
-                    </Link>
+                    </button>
                   </p>
                 </li>
               </ul>
