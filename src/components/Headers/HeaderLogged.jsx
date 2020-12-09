@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import textes from "strings/medecinStrings";
 import URLS from "urls/urls";
 import { useHistory } from "react-router-dom";
+import appContext from "contexts/appContext";
+
 const HeaderLogged = () => {
   const history = useHistory();
+  const {setStatus} = useContext(appContext);
+
   const onLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem("token");
+    localStorage.removeItem("status");
+    setStatus("");
     history.push(URLS.ACCUEIL);
   };
   return (

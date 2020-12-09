@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import apiUrls from "urls/apiUrls";
 import urls from "urls/urls";
@@ -6,15 +6,16 @@ import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
 import { useHistory } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import appContext from 'contexts/appContext';
 
 const InscriptionEtablissementView = () => {
   const [nom, setnom] = useState("");
   const [adresse, setadresse] = useState("");
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const {setStatus, error, setError} = useContext(appContext);
 
   const onChangeNom = (event) => {
     event.preventDefault();
@@ -48,6 +49,8 @@ const InscriptionEtablissementView = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);
+        setStatus('etablissement');
+        localStorage.setItem("status",'etablissement');
         history.push(urls.ETABLISSEMENT_CONNECTED);
       })
       .catch((error) => {

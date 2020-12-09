@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MedecinCard from "components/ConnectedMedecin/MedecinCard";
 import { create } from "services/medecinService";
 import { useHistory } from "react-router-dom";
 import URLS from "urls/urls";
+import appContext from "contexts/appContext";
+
 const MedecinContent = () => {
   const history = useHistory();
   const [nbQR, setnbQR] = useState(1);
+  const {error, setError} = useContext(appContext);
+
   const onChangeNbQr = (event) => {
     event.preventDefault();
     setnbQR(event.target.value);
@@ -13,16 +17,20 @@ const MedecinContent = () => {
 
   const onPrint = (event) => {
     event.preventDefault();
-    console.log("The number of QR code to print is :", nbQR);
-    create(nbQR)
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("qrs", JSON.stringify(response));
-        history.push(URLS.MULTIPLE_QRGENERATOR);
-      })
-      .catch((error) => {
-        console.warn(error);
-      });
+    setError('');
+    if(nbQR < 1){
+      setError('Le nombre de QR codes ne peut être inférieur à 1');
+    } else {
+      create(nbQR)
+        .then((response) => {
+          console.log(response);
+          localStorage.setItem("qrs", JSON.stringify(response));
+          history.push(URLS.MULTIPLE_QRGENERATOR);
+        })
+        .catch((error) => {
+          setError(error.response.data.error);
+        });
+    }
   };
   return (
     <div className="container">
@@ -32,6 +40,7 @@ const MedecinContent = () => {
         </div>
         <div className="col-xs-12 col-sm-6 text-center">
           <br />
+          <div className="has-error help-block text-center">{error}</div>
           <br />
           <input
             type="number"

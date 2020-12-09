@@ -2,10 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import URLS from "urls/urls";
 
-const LieuView = ({ texte, lieu }) => {
+const LieuView = ({ lieu }) => {
   const history = useHistory();
   const redirectToQrGenerator = () => {
-    console.log("redirectToQrGenerator");
     localStorage.setItem("qr", lieu.qrCode);
     history.push(URLS.SINGLE_QRGENERATOR);
   };
@@ -23,7 +22,7 @@ const LieuView = ({ texte, lieu }) => {
               className="btn btn-primary btn-lg"
               type="button"
             >
-              {texte}
+              Télécharger
             </button>
           </td>
         </tr>

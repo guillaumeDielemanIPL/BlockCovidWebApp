@@ -51,7 +51,7 @@ const MultipleQRGenerator = () => {
       >
         {({ blob, url, loading, error }) =>
           loading
-            ? "Chargement du cocument..."
+            ? "Chargement du document..."
             : "Télécharger maintenant vos QR codes!"
         }
       </PDFDownloadLink>

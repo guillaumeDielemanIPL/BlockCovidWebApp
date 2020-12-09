@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import textes from "strings/etablissementStrings";
 import { create, getAll } from "services/etablissementService";
 import LieuView from "components/ConnectedEtablissement/LieuView";
+import appContext from 'contexts/appContext';
 
 const ConnectedEtablissementContent = () => {
   const [nomLieu, setNomLieu] = useState("");
   const [description, setDescription] = useState("");
   const [lieux, setLieux] = useState([]);
-  const [error, setError] = useState("");
+  const {error, setError} = useContext(appContext);
 
   const initialLoad = () => {
+    setError("");
     getAll()
       .then((response) => {
-        console.log(response);
         setLieux(response);
       })
       .catch((error) => {
-        console.warn(error.response.data.error);
         setError(error.response.data.error);
       });
   };
 
-  useEffect(initialLoad, []);
+  useEffect(initialLoad, [setError]);
 
   const handleNom = (event) => {
     event.preventDefault();
@@ -47,7 +47,6 @@ const ConnectedEtablissementContent = () => {
         setDescription("");
       })
       .catch((error) => {
-        console.warn(error.response.data.error);
         setError(error.response.data.error);
       });
   };
@@ -65,6 +64,7 @@ const ConnectedEtablissementContent = () => {
               type="text"
               placeholder={textes.PLACEHOLDER_NOM_LIEU}
               onChange={handleNom}
+              value={nomLieu}
               required
             />
           </div>
@@ -75,6 +75,7 @@ const ConnectedEtablissementContent = () => {
               type="text"
               placeholder={textes.PLACEHOLDER_DESCRIPTION}
               onChange={handleDescription}
+              value={description}
               required
             />
           </div>
@@ -91,7 +92,7 @@ const ConnectedEtablissementContent = () => {
           <p className="text-center">{textes.VIDE}</p>
         ) : (
           lieux.map((lieu) => (
-            <LieuView key={lieu.id} texte={textes.TELECHARGER} lieu={lieu} />
+            <LieuView key={lieu.id} lieu={lieu} />
           ))
         )}
       </div>

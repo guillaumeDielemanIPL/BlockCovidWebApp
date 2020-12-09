@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "styles/forms.scoped.css";
 import textes from "strings/connexionStrings";
 import axios from "axios";
@@ -6,13 +6,14 @@ import urls from "urls/urls";
 import apiUrls from "urls/apiUrls";
 import { useHistory } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import appContext from "contexts/appContext";
 
 const ConnexionView = () => {
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const {setStatus, error, setError} = useContext(appContext);
 
   const onChangeEmail = (event) => {
     event.preventDefault();
@@ -35,6 +36,8 @@ const ConnexionView = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);
+        setStatus('medecin');
+        localStorage.setItem("status",'medecin');
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch(() => {
@@ -44,6 +47,8 @@ const ConnexionView = () => {
           .then((response) => {
             console.log(response);
             localStorage.setItem("token", response.data.token);
+            setStatus('etablissement');
+            localStorage.setItem("status",'etablissement');
             history.push(urls.ETABLISSEMENT_CONNECTED);
           })
           .catch((error) => {

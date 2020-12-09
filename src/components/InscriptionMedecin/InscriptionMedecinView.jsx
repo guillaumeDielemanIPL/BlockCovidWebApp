@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import "styles/forms.scoped.css";
 import textes from "strings/inscriptionStrings";
@@ -6,15 +6,16 @@ import apiUrls from "urls/apiUrls";
 import urls from "urls/urls";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory } from "react-router-dom";
+import appContext from 'contexts/appContext';
 
 const InscriptionMedecinView = () => {
   const [nom, setnom] = useState("");
   const [prenom, setprenom] = useState("");
   const [email, setemail] = useState("");
   const [motDePasse, setmotDePasse] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const {setStatus, error, setError} = useContext(appContext);
 
   const onChangeNom = (event) => {
     event.preventDefault();
@@ -49,6 +50,8 @@ const InscriptionMedecinView = () => {
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);
+        setStatus('medecin');
+        localStorage.setItem("status",'medecin');
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch((error) => {
