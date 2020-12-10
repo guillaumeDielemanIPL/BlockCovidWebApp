@@ -9,31 +9,31 @@ import { useHistory } from "react-router-dom";
 import appContext from 'contexts/appContext';
 
 const InscriptionMedecinView = () => {
-  const [nom, setnom] = useState("");
-  const [prenom, setprenom] = useState("");
-  const [email, setemail] = useState("");
-  const [motDePasse, setmotDePasse] = useState("");
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [email, setEmail] = useState("");
+  const [motDePasse, setMotDePasse] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const {setStatus, error, setError} = useContext(appContext);
 
-  const onChangeNom = (event) => {
+  const handleChangeNom = (event) => {
     event.preventDefault();
-    setnom(event.target.value);
+    setNom(event.target.value);
   };
-  const onChangePrenom = (event) => {
+  const handleChangePrenom = (event) => {
     event.preventDefault();
-    setprenom(event.target.value);
+    setPrenom(event.target.value);
   };
-  const onChangeEmail = (event) => {
+  const handleChangeEmail = (event) => {
     event.preventDefault();
-    setemail(event.target.value);
+    setEmail(event.target.value);
   };
-  const onChangeMDP = (event) => {
+  const handleChangeMDP = (event) => {
     event.preventDefault();
-    setmotDePasse(event.target.value);
+    setMotDePasse(event.target.value);
   };
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
     setError("");
@@ -44,35 +44,36 @@ const InscriptionMedecinView = () => {
       email: email,
       password: motDePasse,
     };
-    console.log(medecin);
     axios
       .post(apiUrls.INSCRIPTION_MEDECIN, medecin)
       .then((response) => {
-        console.log(response);
         localStorage.setItem("token", response.data.token);
         setStatus('medecin');
         localStorage.setItem("status",'medecin');
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch((error) => {
-        console.warn(error.response.data.error);
         setError(error.response.data.error);
         setLoading(false);
       });
+    setNom("");
+    setPrenom("");
+    setEmail("");
+    setMotDePasse("");
   };
   return (
     <div className="scoped-background-colored">
       <div className="scoped-center">
         <div className="scoped-container">
           <div className="scoped-text">{textes.TITRE}</div>
-          <div className="has-error help-block text-center">{error}</div>
-          <form>
+          <div className="error-msg text-center">{error}</div>
+          <form onSubmit={handleSubmit}>
             <div className="scoped-data">
               <label>{textes.NOM}</label>
               <input
                 type="text"
                 placeholder={textes.PLACEHOLDER_NOM}
-                onChange={onChangeNom}
+                onChange={handleChangeNom}
                 required
               />
             </div>
@@ -81,7 +82,7 @@ const InscriptionMedecinView = () => {
               <input
                 type="text"
                 placeholder={textes.PLACEHOLDER_PRENOM}
-                onChange={onChangePrenom}
+                onChange={handleChangePrenom}
                 required
               />
             </div>
@@ -90,17 +91,17 @@ const InscriptionMedecinView = () => {
               <input
                 type="email"
                 placeholder={textes.PLACEHOLDER_MAIL}
-                onChange={onChangeEmail}
+                onChange={handleChangeEmail}
                 required
               />
             </div>
             <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
-              <input type="password" onChange={onChangeMDP} required />
+              <input type="password" onChange={handleChangeMDP} required />
             </div>
             <div className="scoped-btn">
               <div className="scoped-inner" />
-              <button onClick={onSubmit}>
+              <button type="submit">
                 {textes.CREER_COMPTE}
                 <div className="sweet-loading">
                   <ClipLoader size={15} color={"#FFFFF"} loading={loading} />

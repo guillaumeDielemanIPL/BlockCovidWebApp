@@ -9,21 +9,21 @@ import ClipLoader from "react-spinners/ClipLoader";
 import appContext from "contexts/appContext";
 
 const ConnexionView = () => {
-  const [email, setemail] = useState("");
-  const [motDePasse, setmotDePasse] = useState("");
+  const [email, setEmail] = useState("");
+  const [motDePasse, setMotDePasse] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const {setStatus, error, setError} = useContext(appContext);
 
-  const onChangeEmail = (event) => {
+  const handleChangeEmail = (event) => {
     event.preventDefault();
-    setemail(event.target.value);
+    setEmail(event.target.value);
   };
-  const onChangeMDP = (event) => {
+  const handleChangeMDP = (event) => {
     event.preventDefault();
-    setmotDePasse(event.target.value);
+    setMotDePasse(event.target.value);
   };
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
     setError("");
@@ -34,7 +34,6 @@ const ConnexionView = () => {
     axios
       .post(apiUrls.CONNEXION_MEDECIN, user)
       .then((response) => {
-        console.log(response);
         localStorage.setItem("token", response.data.token);
         setStatus('medecin');
         localStorage.setItem("status",'medecin');
@@ -45,44 +44,43 @@ const ConnexionView = () => {
         axios
           .post(apiUrls.CONNEXION_ETABLISSEMENT, user)
           .then((response) => {
-            console.log(response);
             localStorage.setItem("token", response.data.token);
             setStatus('etablissement');
             localStorage.setItem("status",'etablissement');
             history.push(urls.ETABLISSEMENT_CONNECTED);
           })
           .catch((error) => {
-            //NOT ETABLISSEMENT AND NOT MEDECIN
-            console.warn(error.response.data.error);
             setError(error.response.data.error);
             setLoading(false);
           });
       });
+    setEmail("");
+    setMotDePasse("");
   };
   return (
     <div className="scoped-background-colored">
       <div className="scoped-center">
         <div className="scoped-container">
           <div className="scoped-text">{textes.TITRE}</div>
-          <div className="has-error help-block text-center">{error}</div>
-          <form action="#">
+          <div className="error-msg text-center">{error}</div>
+          <form action="#" onSubmit={handleSubmit}>
             <div className="scoped-data">
               <label>{textes.MAIL}</label>
               <input
                 type="text"
                 placeholder={textes.PLACEHOLDER_MAIL}
-                onChange={onChangeEmail}
+                onChange={handleChangeEmail}
                 required
               />
             </div>
             <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
-              <input type="password" onChange={onChangeMDP} required />
+              <input type="password" onChange={handleChangeMDP} required />
             </div>
 
             <div className="scoped-btn">
               <div className="scoped-inner" />
-              <button onClick={onSubmit} type="submit">
+              <button type="submit">
                 {textes.CONNECTER}
                 <div className="sweet-loading">
                   <ClipLoader size={15} color={"#FFFFF"} loading={loading} />

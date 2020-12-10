@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useMemo} from "react";
 import {
   Document,
   Image,
@@ -6,11 +6,10 @@ import {
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
-import HeaderLogged from "components/Headers/HeaderLogged";
-import Footer from "components/SharedComponents/Footer";
+
 var QRCode = require("qrcode");
-const SingleQRGenerator = () => {
-  const qr = localStorage.getItem("qr");
+
+const SingleQRGenerator = ({lieu}) => {
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",
@@ -23,7 +22,7 @@ const SingleQRGenerator = () => {
     },
   });
   let base64Image;
-  QRCode.toDataURL(qr, function (err, url) {
+  QRCode.toDataURL(lieu.qrCode, function (err, url) {
     base64Image = "data:application/pdf" + url.slice(url.indexOf(";"));
   });
 
@@ -34,18 +33,24 @@ const SingleQRGenerator = () => {
       </Page>
     </Document>
   );
-  return (
-    <div>
-      <HeaderLogged />
+  return useMemo(() =>
+    (<div>
       <PDFDownloadLink
         className="text-center"
         document={<MyDocument />}
-        fileName="blockCovidQRCode.pdf"
+        fileName={lieu.nom}
       >
-        Télécharger maintenant ce QR code!
+        {({loading}) =>
+          loading ? "Chargement du document..." : 
+          <button
+              className="btn btn-primary btn-lg"
+              type="button"
+            >
+              Télécharger
+        </button>
+        }
       </PDFDownloadLink>
-      <Footer />
-    </div>
+    </div>),[lieu.nom]
   );
 };
 

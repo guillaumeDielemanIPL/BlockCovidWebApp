@@ -1,8 +1,6 @@
-@import url(
-  https://fonts.googleapis.com/css?family=Hind+Siliguri:300,
+@import url(https://fonts.googleapis.com/css?family=Hind+Siliguri:300,
   600|Martel:400,
-  900
-);
+  900);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -2234,6 +2232,9 @@ textarea.input-lg {
 }
 .has-warning .form-control-feedback {
   color: #8a6d3b;
+}
+.error-msg {
+  color: #ca044b;
 }
 .has-error .checkbox,
 .has-error .checkbox-inline,

@@ -7,7 +7,6 @@ import React, { useContext} from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import URLS from "urls/urls";
 import ConnectedEtablissementView from "components/ConnectedEtablissement/ConnectedEtablissementView";
-import SingleQRGenerator from "components/QRCodeGenerator/SingleQRGenerator";
 import ConnectedMedecinView from "components/ConnectedMedecin/ConnectedMedecinView";
 import MultipleQRGenerator from "components/QRCodeGenerator/MultipleQRGenerator";
 import appContext from "contexts/appContext";
@@ -17,40 +16,61 @@ const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route path={URLS.SINGLE_QRGENERATOR}>
-          <SingleQRGenerator />
-        </Route>
         <Route path={URLS.MULTIPLE_QRGENERATOR}>
-          <MultipleQRGenerator />
+          {!status ? 
+                    <Redirect to={URLS.ACCUEIL} /> : 
+                    status === 'medecin' ? 
+                      <MultipleQRGenerator /> : 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.MEDECIN_CONNECTED}>
           {!status ? 
-            <Redirect to={URLS.ACCUEIL} /> : 
-            status === 'medecin' ? 
-              <ConnectedMedecinView /> : 
-              <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
+                    <Redirect to={URLS.ACCUEIL} /> : 
+                    status === 'medecin' ? 
+                      <ConnectedMedecinView /> : 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.INSCRIPTION_MEDECIN}>
-          <InscriptionMedecinView />
+          {!status ? 
+                    <InscriptionMedecinView /> : 
+                    status === 'medecin' ? 
+                      <Redirect to={URLS.MEDECIN_CONNECTED} />: 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.INSCRIPTION_ETABLISSEMENT}>
-          <InscriptionEtablissementView />
+          {!status ? 
+                    <InscriptionEtablissementView /> : 
+                    status === 'medecin' ? 
+                      <Redirect to={URLS.MEDECIN_CONNECTED} />: 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.INSCRIPTION}>
-          <InscriptionChoiceView />
+          {!status ? 
+                    <InscriptionChoiceView /> : 
+                    status === 'medecin' ? 
+                      <Redirect to={URLS.MEDECIN_CONNECTED} />: 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.CONNEXION}>
-          <ConnexionView />
+          {!status ? 
+                    <ConnexionView /> : 
+                    status === 'medecin' ? 
+                      <Redirect to={URLS.MEDECIN_CONNECTED} />: 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.ETABLISSEMENT_CONNECTED}>
           {!status ? 
-            <Redirect to={URLS.ACCUEIL} /> : 
-            status === 'etablissement' ? 
-              <ConnectedEtablissementView /> :
-              <Redirect to={URLS.MEDECIN_CONNECTED}/> }
+                    <Redirect to={URLS.ACCUEIL} /> : 
+                    status === 'medecin' ? 
+                        <Redirect to={URLS.MEDECIN_CONNECTED}/> :
+                        <ConnectedEtablissementView />}
         </Route>
         <Route path={URLS.ACCUEIL}>
-        {!status ? <HomeView /> : status === 'etablissement' ? <Redirect to={URLS.ETABLISSEMENT_CONNECTED} /> : <Redirect to={URLS.MEDECIN_CONNECTED}/> }
+        {!status ? 
+                  <HomeView /> : 
+                  status === 'medecin' ? 
+                      <Redirect to={URLS.MEDECIN_CONNECTED}/> : 
+                      <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
       </Switch>
     </Router>

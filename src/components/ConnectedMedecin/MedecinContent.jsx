@@ -12,18 +12,25 @@ const MedecinContent = () => {
 
   const onChangeNbQr = (event) => {
     event.preventDefault();
-    setnbQR(event.target.value);
+    setError("");
+    const newNbQr = event.target.value;
+    if(String(newNbQr) === '' || newNbQr > 0){
+      setnbQR(newNbQr);
+    }
+    else if(newNbQr < 1){
+      setnbQR(1);
+      setError("Le nombre de QR codes ne peut être inférieur à 1 !");
+    }
   };
 
   const onPrint = (event) => {
     event.preventDefault();
-    setError('');
+    setError("");
     if(nbQR < 1){
-      setError('Le nombre de QR codes ne peut être inférieur à 1');
+      setError("Le nombre de QR codes ne peut être inférieur à 1 !");
     } else {
       create(nbQR)
         .then((response) => {
-          console.log(response);
           localStorage.setItem("qrs", JSON.stringify(response));
           history.push(URLS.MULTIPLE_QRGENERATOR);
         })
@@ -40,13 +47,14 @@ const MedecinContent = () => {
         </div>
         <div className="col-xs-12 col-sm-6 text-center">
           <br />
-          <div className="has-error help-block text-center">{error}</div>
+          <div className="error-msg text-center">{error}</div>
           <br />
           <input
             type="number"
             className="btn btn-info btn-lg"
             onChange={onChangeNbQr}
             placeholder="Entrez un nombre"
+            value={nbQR}
           />
           <br />
           <br />

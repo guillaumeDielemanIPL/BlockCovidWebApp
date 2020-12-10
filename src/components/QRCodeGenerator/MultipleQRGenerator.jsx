@@ -11,7 +11,6 @@ import Footer from "components/SharedComponents/Footer";
 var QRCode = require("qrcode");
 const MultipleQRGenerator = () => {
   const qrs = JSON.parse(localStorage.getItem("qrs"));
-  console.log("qrs =", qrs);
   const styles = StyleSheet.create({
     page: {
       flexDirection: "row",

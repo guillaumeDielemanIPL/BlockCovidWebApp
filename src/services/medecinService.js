@@ -10,7 +10,6 @@ const create = (nbOfQrs) => {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     }
   );
-  console.log("Send request", request);
   return request.then((response) => response.data);
 };
 

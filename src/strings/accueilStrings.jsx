@@ -6,11 +6,11 @@ const HOME_STRINGS = {
     "Imprimez des QR codes pour que vos patients puissent alerter leurs proches quand ils sont contaminés.  ",
   ETABLISSEMENT_DESCRIPTION:
     "Imprimez des QR codes pour votre établissement afin que vos visiteurs puissent les scanner et limiter la propagation du virus",
-  DEVELOPE_PAR: "Dévelopé par le groupe 4",
+  DEVELOPE_PAR: "Développé par le groupe 4",
   TEMPLATE: "Template créé par Mashup Template/Unsplash",
   INSCRIRE: "S'inscrire",
   CONNECTER: "Se connecter",
-  ACCUEIL: "Acccueil",
+  ACCUEIL: "Accueil",
   INSCRIPTION: "Inscription",
   CONNEXION: "Connexion",
 };
