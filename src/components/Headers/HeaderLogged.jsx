@@ -12,6 +12,7 @@ const HeaderLogged = () => {
     event.preventDefault();
     localStorage.removeItem("token");
     localStorage.removeItem("status");
+    localStorage.removeItem("qrs");
     setStatus("");
     setError("");
     history.push(URLS.ACCUEIL);

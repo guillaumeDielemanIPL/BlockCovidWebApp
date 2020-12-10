@@ -7,23 +7,24 @@ import appContext from "contexts/appContext";
 
 const MedecinContent = () => {
   const history = useHistory();
-  const [nbQR, setnbQR] = useState(1);
+  const [nbQR, setNbQR] = useState(1);
   const {error, setError} = useContext(appContext);
-
-  const onChangeNbQr = (event) => {
+  localStorage.removeItem("qrs");
+  
+  const handleChangeNbQr = (event) => {
     event.preventDefault();
     setError("");
     const newNbQr = event.target.value;
     if(String(newNbQr) === '' || newNbQr > 0){
-      setnbQR(newNbQr);
+      setNbQR(newNbQr);
     }
     else if(newNbQr < 1){
-      setnbQR(1);
+      setNbQR(1);
       setError("Le nombre de QR codes ne peut être inférieur à 1 !");
     }
   };
 
-  const onPrint = (event) => {
+  const handlePrint = (event) => {
     event.preventDefault();
     setError("");
     if(nbQR < 1){
@@ -40,7 +41,7 @@ const MedecinContent = () => {
     }
   };
   return (
-    <div className="container">
+    <div className="container large-medecin">
       <div className="row">
         <div className="col-xs-12 col-sm-6">
           <MedecinCard />
@@ -52,13 +53,13 @@ const MedecinContent = () => {
           <input
             type="number"
             className="btn btn-info btn-lg"
-            onChange={onChangeNbQr}
+            onChange={handleChangeNbQr}
             placeholder="Entrez un nombre"
             value={nbQR}
           />
           <br />
           <br />
-          <button className="btn btn-primary btn-lg" onClick={onPrint}>
+          <button className="btn btn-primary btn-lg" onClick={handlePrint}>
             IMPRIMER
           </button>
         </div>
