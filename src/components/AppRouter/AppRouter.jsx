@@ -3,8 +3,13 @@ import InscriptionEtablissementView from "components/InscriptionEtablissement/In
 import InscriptionMedecinView from "components/InscriptionMedecin/InscriptionMedecinView";
 import InscriptionChoiceView from "components/InscriptionChoice/InscriptionChoiceView";
 import ConnexionView from "components/Connexion/ConnexionView";
-import React, { useContext} from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import React, { useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import URLS from "urls/urls";
 import ConnectedEtablissementView from "components/ConnectedEtablissement/ConnectedEtablissementView";
 import ConnectedMedecinView from "components/ConnectedMedecin/ConnectedMedecinView";
@@ -12,7 +17,7 @@ import MultipleQRGenerator from "components/QRCodeGenerator/MultipleQRGenerator"
 import appContext from "contexts/appContext";
 
 const AppRouter = () => {
-  const {status} = useContext(appContext);
+  const { status } = useContext(appContext);
   return (
     <Router>
       <Switch>
