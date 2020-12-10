@@ -17,63 +17,63 @@ import MultipleQRGenerator from "components/QRCodeGenerator/MultipleQRGenerator"
 import appContext from "contexts/appContext";
 
 const AppRouter = () => {
-  const { status } = useContext(appContext);
+  const { role } = useContext(appContext);
   return (
     <Router>
       <Switch>
         <Route path={URLS.MULTIPLE_QRGENERATOR}>
-          {!status ? 
+          {!role ? 
                     <Redirect to={URLS.ACCUEIL} /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                       <MultipleQRGenerator /> : 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.MEDECIN_CONNECTED}>
-          {!status ? 
+          {!role ? 
                     <Redirect to={URLS.ACCUEIL} /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                       <ConnectedMedecinView /> : 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.INSCRIPTION_MEDECIN}>
-          {!status ? 
+          {!role ? 
                     <InscriptionMedecinView /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                       <Redirect to={URLS.MEDECIN_CONNECTED} />: 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.INSCRIPTION_ETABLISSEMENT}>
-          {!status ? 
+          {!role ? 
                     <InscriptionEtablissementView /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                       <Redirect to={URLS.MEDECIN_CONNECTED} />: 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.INSCRIPTION}>
-          {!status ? 
+          {!role ? 
                     <InscriptionChoiceView /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                       <Redirect to={URLS.MEDECIN_CONNECTED} />: 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.CONNEXION}>
-          {!status ? 
+          {!role ? 
                     <ConnexionView /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                       <Redirect to={URLS.MEDECIN_CONNECTED} />: 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>
         <Route path={URLS.ETABLISSEMENT_CONNECTED}>
-          {!status ? 
+          {!role ? 
                     <Redirect to={URLS.ACCUEIL} /> : 
-                    status === 'medecin' ? 
+                    role === 'medecin' ? 
                         <Redirect to={URLS.MEDECIN_CONNECTED}/> :
                         <ConnectedEtablissementView />}
         </Route>
         <Route path={URLS.ACCUEIL}>
-        {!status ? 
+        {!role ? 
                   <HomeView /> : 
-                  status === 'medecin' ? 
+                  role === 'medecin' ? 
                       <Redirect to={URLS.MEDECIN_CONNECTED}/> : 
                       <Redirect to={URLS.ETABLISSEMENT_CONNECTED} />}
         </Route>

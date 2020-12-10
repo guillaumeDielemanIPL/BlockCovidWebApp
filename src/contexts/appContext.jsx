@@ -5,13 +5,13 @@ const Context = React.createContext(null);
 const ProviderWrapper = (props) => {
 
     const [ error, setError ] = useState("");
-    const [ status, setStatus ] = useState(localStorage.getItem("status"));
+    const [ role, setRole ] = useState(localStorage.getItem("role"));
 
     const exposedValue = {
         error,
         setError,
-        status,
-        setStatus,
+        role,
+        setRole,
     }
 
     return (

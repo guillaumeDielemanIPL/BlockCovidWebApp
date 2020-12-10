@@ -89,7 +89,7 @@ const ConnectedEtablissementContent = () => {
       <div className="container">
         <h1 className="h0">{textes.LIEUX}</h1>
         {lieux.length === 0 ? (
-          <p className="text-center">{textes.VIDE}</p>
+          <p className="text-center large-etablissement">{textes.VIDE}</p>
         ) : (
           lieux.map((lieu) => (
             <LieuView key={lieu.id} lieu={lieu} />

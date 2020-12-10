@@ -6,6 +6,7 @@ import {
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
+import textes from "strings/etablissementStrings";
 
 var QRCode = require("qrcode");
 
@@ -41,12 +42,12 @@ const SingleQRGenerator = ({lieu}) => {
         fileName={lieu.nom}
       >
         {({loading}) =>
-          loading ? "Chargement du document..." : 
+          loading ? textes.CHARGEMENT : 
           <button
               className="btn btn-primary btn-lg"
               type="button"
             >
-              Télécharger
+              {textes.TELECHARGER}
         </button>
         }
       </PDFDownloadLink>

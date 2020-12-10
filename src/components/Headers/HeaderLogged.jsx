@@ -6,14 +6,14 @@ import appContext from "contexts/appContext";
 
 const HeaderLogged = () => {
   const history = useHistory();
-  const {setStatus, setError} = useContext(appContext);
+  const {setRole, setError} = useContext(appContext);
 
   const onLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem("token");
-    localStorage.removeItem("status");
+    localStorage.removeItem("role");
     localStorage.removeItem("qrs");
-    setStatus("");
+    setRole("");
     setError("");
     history.push(URLS.ACCUEIL);
   };

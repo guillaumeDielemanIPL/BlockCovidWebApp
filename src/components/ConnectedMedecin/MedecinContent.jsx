@@ -4,6 +4,7 @@ import { create } from "services/medecinService";
 import { useHistory } from "react-router-dom";
 import URLS from "urls/urls";
 import appContext from "contexts/appContext";
+import textes from "strings/medecinStrings";
 
 const MedecinContent = () => {
   const history = useHistory();
@@ -20,7 +21,7 @@ const MedecinContent = () => {
     }
     else if(newNbQr < 1){
       setNbQR(1);
-      setError("Le nombre de QR codes ne peut être inférieur à 1 !");
+      setError(textes.Erreur);
     }
   };
 
@@ -28,7 +29,7 @@ const MedecinContent = () => {
     event.preventDefault();
     setError("");
     if(nbQR < 1){
-      setError("Le nombre de QR codes ne peut être inférieur à 1 !");
+      setError(textes.Erreur);
     } else {
       create(nbQR)
         .then((response) => {
@@ -60,7 +61,7 @@ const MedecinContent = () => {
           <br />
           <br />
           <button className="btn btn-primary btn-lg" onClick={handlePrint}>
-            IMPRIMER
+            {textes.IMPRIMER}
           </button>
         </div>
       </div>

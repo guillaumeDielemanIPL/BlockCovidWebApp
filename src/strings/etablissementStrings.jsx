@@ -7,7 +7,8 @@ const AJOUTLIEU_STRINGS = {
     CREER: "Créer",
     LIEUX: "Mes lieux",
     TELECHARGER: "Télécharger ce QR code",
-    VIDE: "Aucun lieu"
+    CHARGEMENT: "Chargement du document...",
+    VIDE: "Aucun lieu",
   };
   
   export default AJOUTLIEU_STRINGS;

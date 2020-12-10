@@ -15,7 +15,7 @@ const InscriptionMedecinView = () => {
   const [motDePasse, setMotDePasse] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const {setStatus, error, setError} = useContext(appContext);
+  const {setRole, error, setError} = useContext(appContext);
 
   const handleChangeNom = (event) => {
     event.preventDefault();
@@ -48,8 +48,8 @@ const InscriptionMedecinView = () => {
       .post(apiUrls.INSCRIPTION_MEDECIN, medecin)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        setStatus('medecin');
-        localStorage.setItem("status",'medecin');
+        setRole('medecin');
+        localStorage.setItem("role",'medecin');
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch((error) => {

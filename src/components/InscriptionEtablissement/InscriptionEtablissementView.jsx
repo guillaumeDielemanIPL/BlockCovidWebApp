@@ -15,7 +15,7 @@ const InscriptionEtablissementView = () => {
   const [motDePasse, setMotDePasse] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const {setStatus, error, setError} = useContext(appContext);
+  const {setRole, error, setError} = useContext(appContext);
 
   const handleChangeNom = (event) => {
     event.preventDefault();
@@ -47,8 +47,8 @@ const InscriptionEtablissementView = () => {
       .post(apiUrls.INSCRIPTION_ETABLISSEMENT, etablissement)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        setStatus('etablissement');
-        localStorage.setItem("status",'etablissement');
+        setRole('etablissement');
+        localStorage.setItem("role",'etablissement');
         history.push(urls.ETABLISSEMENT_CONNECTED);
       })
       .catch((error) => {
@@ -66,7 +66,7 @@ const InscriptionEtablissementView = () => {
         <div className="scoped-container">
           <div className="scoped-text">{textes.TITRE}</div>
           <div className="error-msg text-center">{error}</div>
-          <form onClick={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="scoped-data">
               <label>{textes.NOM_ETABLISSEMENT}</label>
               <input

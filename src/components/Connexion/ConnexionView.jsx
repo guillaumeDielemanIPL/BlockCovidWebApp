@@ -13,7 +13,7 @@ const ConnexionView = () => {
   const [motDePasse, setMotDePasse] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const {setStatus, error, setError} = useContext(appContext);
+  const {setRole, error, setError} = useContext(appContext);
 
   const handleChangeEmail = (event) => {
     event.preventDefault();
@@ -35,8 +35,8 @@ const ConnexionView = () => {
       .post(apiUrls.CONNEXION_MEDECIN, user)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        setStatus('medecin');
-        localStorage.setItem("status",'medecin');
+        setRole('medecin');
+        localStorage.setItem("role",'medecin');
         history.push(urls.MEDECIN_CONNECTED);
       })
       .catch(() => {
@@ -45,8 +45,8 @@ const ConnexionView = () => {
           .post(apiUrls.CONNEXION_ETABLISSEMENT, user)
           .then((response) => {
             localStorage.setItem("token", response.data.token);
-            setStatus('etablissement');
-            localStorage.setItem("status",'etablissement');
+            setRole('etablissement');
+            localStorage.setItem("role",'etablissement');
             history.push(urls.ETABLISSEMENT_CONNECTED);
           })
           .catch((error) => {
