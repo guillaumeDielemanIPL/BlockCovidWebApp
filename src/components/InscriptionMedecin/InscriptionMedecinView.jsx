@@ -50,6 +50,7 @@ const InscriptionMedecinView = () => {
     axios
       .post(apiUrls.INSCRIPTION_MEDECIN, medecin)
       .then((response) => {
+        console.log(response)
         localStorage.setItem("token", response.data.token);
         setRole('medecin');
         localStorage.setItem("role",'medecin');
@@ -78,6 +79,7 @@ const InscriptionMedecinView = () => {
                 placeholder={textes.PLACEHOLDER_NOM}
                 onChange={handleChangeNom}
                 required
+                value={nom}
               />
             </div>
             <div className="scoped-data">
@@ -87,6 +89,7 @@ const InscriptionMedecinView = () => {
                 placeholder={textes.PLACEHOLDER_PRENOM}
                 onChange={handleChangePrenom}
                 required
+                value={prenom}
               />
             </div>
             <div className="scoped-data">
@@ -96,11 +99,16 @@ const InscriptionMedecinView = () => {
                 placeholder={textes.PLACEHOLDER_MAIL}
                 onChange={handleChangeEmail}
                 required
+                value={email}
               />
             </div>
             <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
-              <input type="password" onChange={handleChangeMDP} required />
+              <input 
+                type="password" 
+                onChange={handleChangeMDP} 
+                required
+                value={motDePasse} />
             </div>
             <div className="scoped-btn">
               <div className="scoped-inner" />

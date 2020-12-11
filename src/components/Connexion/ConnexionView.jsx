@@ -34,6 +34,7 @@ const ConnexionView = () => {
       email: email,
       password: motDePasse,
     };
+    console.log(user)
     axios
       .post(apiUrls.CONNEXION_MEDECIN, user)
       .then((response) => {
@@ -74,11 +75,17 @@ const ConnexionView = () => {
                 placeholder={textes.PLACEHOLDER_MAIL}
                 onChange={handleChangeEmail}
                 required
+                value={email}
               />
             </div>
             <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
-              <input type="password" onChange={handleChangeMDP} required />
+              <input 
+                type="password" 
+                onChange={handleChangeMDP} 
+                required
+                value={motDePasse} 
+              />
             </div>
 
             <div className="scoped-btn">

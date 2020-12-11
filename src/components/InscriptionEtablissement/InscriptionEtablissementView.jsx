@@ -77,6 +77,7 @@ const InscriptionEtablissementView = () => {
                 placeholder={textes.PLACEHOLDER_NOM_ETABLISSEMENT}
                 onChange={handleChangeNom}
                 required
+                value={nom}
               />
             </div>
             <div className="scoped-data">
@@ -86,6 +87,7 @@ const InscriptionEtablissementView = () => {
                 placeholder={textes.PLACEHOLDER_ADRESSE}
                 onChange={handleChangeAdresse}
                 required
+                value={adresse}
               />
             </div>
             <div className="scoped-data">
@@ -95,11 +97,16 @@ const InscriptionEtablissementView = () => {
                 placeholder={textes.PLACEHOLDER_MAIL}
                 onChange={handleChangeEmail}
                 required
+                value={email}
               />
             </div>
             <div className="scoped-data">
               <label>{textes.MOT_DE_PASSE}</label>
-              <input type="password" onChange={handleChangeMDP} required />
+              <input 
+                type="password" 
+                onChange={handleChangeMDP} 
+                required
+                value={motDePasse} />
             </div>
             <div className="scoped-btn">
               <div className="scoped-inner" />

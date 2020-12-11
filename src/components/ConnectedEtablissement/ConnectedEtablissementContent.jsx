@@ -49,6 +49,8 @@ const ConnectedEtablissementContent = () => {
       .catch((error) => {
         setError(error.response.data.error);
       });
+    setNomLieu("");
+    setDescription("");
   };
 
   return (
