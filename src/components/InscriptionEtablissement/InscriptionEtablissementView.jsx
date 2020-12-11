@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import apiUrls from "urls/apiUrls";
 import urls from "urls/urls";
@@ -16,6 +16,9 @@ const InscriptionEtablissementView = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const {setRole, error, setError} = useContext(appContext);
+
+  const initialLoad = () => setError("");
+  useEffect(initialLoad,[setError]);
 
   const handleChangeNom = (event) => {
     event.preventDefault();

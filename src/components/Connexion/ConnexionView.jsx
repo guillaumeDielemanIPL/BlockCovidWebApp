@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "styles/forms.scoped.css";
 import textes from "strings/connexionStrings";
 import axios from "axios";
@@ -14,6 +14,9 @@ const ConnexionView = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const {setRole, error, setError} = useContext(appContext);
+
+  const initialLoad = () => setError("");
+  useEffect(initialLoad,[setError]);
 
   const handleChangeEmail = (event) => {
     event.preventDefault();
