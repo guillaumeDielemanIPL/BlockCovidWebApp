@@ -21,7 +21,7 @@ const MedecinContent = () => {
     }
     else if(newNbQr < 1){
       setNbQR(1);
-      setError(textes.Erreur);
+      setError(textes.ERREUR);
     }
   };
 
@@ -29,7 +29,7 @@ const MedecinContent = () => {
     event.preventDefault();
     setError("");
     if(nbQR < 1){
-      setError(textes.Erreur);
+      setError(textes.ERREUR);
     } else {
       create(nbQR)
         .then((response) => {

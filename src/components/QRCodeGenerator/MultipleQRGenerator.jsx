@@ -55,6 +55,7 @@ const MultipleQRGenerator = () => {
               : "Télécharger maintenant vos QR codes!"
           }
         </PDFDownloadLink>
+        <div className="large"/>
         <Footer />
       </div>
     );
